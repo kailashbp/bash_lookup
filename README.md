@@ -1,4 +1,5 @@
 # bash_lookup
+
 Useful bash cheatsheet
 
 # Basics
@@ -129,43 +130,38 @@ Spacebar - Bigger movement through the manpage compared against Enter
 	* ldd /bin/env
 
 ## Understanding ls -l long listing
-
-  	• First - is to mention if it is a directory, it is d if it is, else it is just -
-	• Next set of three - are to specify the file permission for Owner
-	• Next set of three - are to specify the file permission for Group
-	• Next set of three - are to specify the file permission for Others
-		○ r - read
-		○ w - write
-		○ x - execute
-		○ l - symbolic link
-		○ b - block special file
-		○ c - character special file
-		○ p - pipe special file
-		○ s - local socket special file
-	•  chown - to change owner of file - requires sudo permission
-	•  chgrp - to change group with which file is associated with - requires sudo permission
-	•  chmod (a|g|u) (+|-) (r|w|x) <file | directory name>
-		○ chmod 700 ./play2 - gives rwx permissions to user, and no permission to group
-and others
-	•  OR chmod 751 <file | directory name>
-		○ a - all, g - group, u - user
-		○ + - add access, - - remove access
-		○ read is 4 points, write is 2 points, execute is 1 point
-		○ We can traverse (cd) to a folder if we have executable access, then
-if they have read access they can read the contents of the folder
-		○ Changing the permissions to a folder doesn't the alter the permissions to the 
-contents of the folder
+	
+* First - is to mention if it is a directory, it is d if it is, else it is just -
+	* Next set of three - are to specify the file permission for Owner
+	* Next set of three - are to specify the file permission for Group
+	* Next set of three - are to specify the file permission for Others
+		* r - read
+		* w - write
+		* x - execute
+		* l - symbolic link
+		* b - block special file
+		* c - character special file
+		* p - pipe special file
+		* s - local socket special file
+* chown - to change owner of file - requires sudo permission
+* chgrp - to change group with which file is associated with - requires sudo permission
+* chmod (a|g|u) (+|-) (r|w|x) <file | directory name>
+	* chmod 700 ./play2 - gives rwx permissions to user, and no permission to group and others
+	* OR chmod 751 <file | directory name>
+	* a - all, g - group, u - user
+	* + - add access, - - remove access
+	* read is 4 points, write is 2 points, execute is 1 point
+* We can traverse (cd) to a folder if we have executable access, then if they have read access they can read the contents of the folder
+	* Changing the permissions to a folder doesn't the alter the permissions to the contents of the folder
 
 # Access Control Lists
 
-  	• ACL - Access Control Lists
-		○ Allows you to set arbitrary permissions for any group or user on a file
-		○ setfacl -m user:krishr12:rwx database.dat - I am giving krishr12 the permission
-to read, write and execute database.dat
-		○ setfacl -r to assign permission to an entire directory
-	• FACL - File system Access Control Lists
-		○ getfacl database.dat - gets proper details on who the user is, who the group is, 
-what are their permissions.
+* ACL - Access Control Lists
+	* Allows you to set arbitrary permissions for any group or user on a file
+	* setfacl -m user:krishr12:rwx database.dat - I am giving krishr12 the permission to read, write and execute database.dat
+	* setfacl -r to assign permission to an entire directory
+* FACL - File system Access Control Lists
+	* getfacl database.dat - gets proper details on who the user is, who the group is, what are their permissions.
 
 ## linebreak
 
@@ -211,19 +207,15 @@ rm cellRanger_segment.mtx*
 
 # Vim
 
-I - Insert mode
-:set paste - goes to insert paste mode - ctl + shift + v - Can copy, paste and edit
-set !paste - unsets paste
+* I - Insert mode
+* :set paste - goes to insert paste mode - ctl + shift + v - Can copy, paste and edit
+* set !paste - unsets paste
 
 # Minerva
 
-/hpc/users/babupk01 - Home directory ~20GB
-/sc/arion/work/babupk01 - Work directory ~100GB
-/sc/arion/scratch/babupk01 - Scratch directory Unlimited but 2 weeks
-
-/sc/arion/projects/BMI1005 - Project directory
-/sc/arion/scratch/mezeim01/BMI1005 - Backup
-
-/sc/arion/ & /hpc/users/ are called mount points
-
-
+* /hpc/users/babupk01 - Home directory ~20GB
+* /sc/arion/work/babupk01 - Work directory ~100GB
+* /sc/arion/scratch/babupk01 - Scratch directory Unlimited but 2 weeks
+* /sc/arion/projects/BMI1005 - Project directory
+* /sc/arion/scratch/mezeim01/BMI1005 - Backup
+* /sc/arion/ & /hpc/users/ are called mount points
