@@ -31,7 +31,6 @@ Look up explainshell.com to get more information on specific commands, and comma
 * mkdir
 	* mkdir ~/play2 - makes a directory called play2 in the home directory
 * rmdir
-* cp <file-location> <destination>
 * rm <file-name>
 	* rm -r <folder-location>
 * cp -r <folder-location> <destination>
@@ -58,12 +57,18 @@ Look up explainshell.com to get more information on specific commands, and comma
 		* -s - display's user's login name, real name, terminal name, write status, idle time, login time, office location and office phone number
 		* -p - doesn't display plan information
 * id - gives you your information regarding the user, group and others
+	
+# File usage
+	
 * df <file-directory-destination> gives file system disk usage stats
 	* file system, %disk used etc
 * df -h /sc/arion/
 * du <path-directory> <optional - can give name of directory> -hs, -h human readable, -s is summarizing
 	* estimate disk usage for specific groups of files or directories
 	* basically gives disk usage for each file and directory in path
+
+# Other
+	
 * sort - sort lines of text files
 	* -g - general numeric sort
 	* -r - sort by reverse order
@@ -89,6 +94,13 @@ Look up explainshell.com to get more information on specific commands, and comma
 * kill <PID> - Kills a given process
 	* kill $! - kills the latest process or the last PID
 	* -9 - if kill does not work add this command switch
+* cut - remove sections from each line of a file
+	* -d delimiter
+	* -f selects only the specified field
+* env - gives details regarding the environment in which UNIX runs
+	* env | less
+	* Provides a interactive way of going through env
+	* Before filename was the parameter to less, now it’s the pipe output
 
 ## BasH files
 	
@@ -221,3 +233,16 @@ rm cellRanger_segment.mtx*
 * /sc/arion/projects/BMI1005 - Project directory
 * /sc/arion/scratch/mezeim01/BMI1005 - Backup
 * /sc/arion/ & /hpc/users/ are called mount points
+	
+# Pipe
+
+* Output of one command is the input to the other
+* Output of one command determines the input parameters of other command
+* One command generates a command which is run
+* Can encapsulate a set of commands and give it to a script to run
+	* echo $PATH | cut -d: -f2
+
+
+
+
+	
