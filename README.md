@@ -3,21 +3,22 @@ Useful bash cheatsheet
 
 # Basics
 
-  •  pwd
-	•  ls -lah
-		○  l long listing
-		○  a hidden files
-		○  h human readable
-		○ dir=/hpc/packages/minerva-common
-		○ Wild card *
-			§ ls $dir/[a-c]* - Starts with a, b, or c 
-			§ ls /bin/[a-c]*t - Starts with a-c and ends with t 
-			§ ls /bin/[a-c]*[te] - Starts with a-c and ends with te
-			§ ls /bin/[!a-c, m-z]* - Does not start with a-c
-	•  cd - goes to home director cd .. - goes to previous directory
-	•  cd /sc/arion/projects/
-	•  man ls - goes to the manual page
-		○ Inside man page type / to search for specific words
+* drag and drop file into Shell - will give you the directory of the file
+* pwd
+* ls -lah
+	* l long listing
+	* a hidden files
+	* h human readable
+	* dir=/hpc/packages/minerva-common
+* Wild card
+	* ls $dir/[a-c]* - Starts with a, b, or c
+	* ls /bin/[a-c]*t - Starts with a-c and ends with t
+	* ls /bin/[a-c]*[te] - Starts with a-c and ends with te
+	* ls /bin/[!a-c, m-z]* - Does not start with a-c
+* cd - goes to home director cd .. - goes to previous directory
+	* cd /sc/arion/projects/
+* man ls - goes to the manual page
+	* Inside man page type / to search for specific words
 	•  ls --help - better command to easily access command switches
 	•  ln - link command 
 		○  ln -s <path-to-file> <path-to-link - default home directory>
