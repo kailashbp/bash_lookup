@@ -33,6 +33,8 @@ Look up explainshell.com to get more information on specific commands, and comma
 * rmdir
 * rm <file-name>
 	* rm -r <folder-location>
+	* -r -recursive
+	* -f - force
 * cp -r <folder-location> <destination>
 	* cp /sc/arion/projects/BMI1005/liglib/*.mol2 .
 		* . refers to here, not the home directory
