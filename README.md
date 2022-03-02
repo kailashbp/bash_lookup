@@ -19,75 +19,81 @@ Useful bash cheatsheet
 	* cd /sc/arion/projects/
 * man ls - goes to the manual page
 	* Inside man page type / to search for specific words
-	•  ls --help - better command to easily access command switches
-	•  ln - link command 
-		○  ln -s <path-to-file> <path-to-link - default home directory>
-			§ ln -s ~/play2/hello.txt /hpc/users/babupk01/
-		○  s - symbolic link which is not a hard link
-		○ -> ALIAS - soft link
-	• .bash_history - keeps a list of the previous commands
-	• .gitconfig -> repository/coastal-personal-home/.gitcconfig
-	•  mkdir
-		○ mkdir ~/play2 - makes a directory called play2 in the home directory
-	•  rmdir
-	•  cp <file-location> <destination>
-	•  rm <file-name>
-	•  rm -r <folder-location>
-	•  cp -r <folder-location> <destination>
-	•  cp /sc/arion/projects/BMI1005/liglib/*.mol2 .
-		○ . refers to here, not the home directory
-		○ if you want to copy it to home, replace . with ~
-		○ .. refers to the directory just above the current directory
-		○ Wildtype character - * matches everything with .mol2 
-	•  cat <file-name> - prints all contents of file to screen
-	•  head <file-name> -n 10 - prints first 10 lines of file to screen
-	•  tail <file-name> -n 10 - prints last 10 lines of file to screen
-	•  less <file-name> - interactively go through file
-	•  more <file-name> - interactively go through file
-	•  clear - clears screena
-  	• w <username> - shows currently logged in users, and what are they doing
-		○ w babupk01
-	• finger <username> - can look up user specific information
-		○ finger -lmsp babupk01
-			§ -l - multi-line format
-			§ -m - prevents matching of user name to other names, just uses the login name
-			§ -s - display's user's login name, real name, terminal name, write status, idle time, 
-login time, office location and office phone number
-			§ -p - doesn't display plan information
-	• id - gives you your information regarding the user, group and others
-	• df <file-directory-destination> gives file system disk usage stats
-		○ file system, %disk used etc
-		○ df -h /sc/arion/
-	• du <path-directory> <optional - can give name of directory>
-		○ estimate disk usage for specific groups of files or directories
-		○ basically gives disk usage for each file and directory in path
-		○ du -hs, -h human readable, -s is summarizing
-	• sort - sort lines of text files
-		○ -g - general numeric sort
-		○ -r - sort by reverse order
-		○ -n - compare according to string numeric value
-		○ -u - unique
-		○ -k - sort via a key
-		○ Unix indexing starts from 1, blank is a separator, unlike cut
-	• uniq - report or omit repeated lines
-		○ -c - count - prefix lines by number of occurrences 
-		○ -d - only print duplicated lines - one for each group
-		○ -u - only print unique lines
-	• who am i
-		○ am i == -m command switch
-		○ who | sort -k 2 --sort=Random | tail -n 10
-	• date - prints system date and time
-		○ +%s - seconds since
-	• echo <string>
-		○ prints string
-		○ echo -e ${PATH//:/\\n} - prints PATH line by line 
-		○ -n - do not output the trailing newline
-		○ echo $! - gives process ID of last submitted process
-		○ echo !$ - gives the last used argument
-	• kill <PID> - Kills a given process
-		○ kill $! - kills the latest process or the last PID
-		○ -9 - if kill does not work add this command switch
-		  
+	* ls --help - better command to easily access command switches
+* ln - link command
+	* ln -s <path-to-file> <path-to-link - default home directory>
+	* ln -s ~/play2/hello.txt /hpc/users/babupk01/
+		* s - symbolic link which is not a hard link
+		* ○ -> ALIAS - soft link
+* mkdir
+	* mkdir ~/play2 - makes a directory called play2 in the home directory
+* rmdir
+* cp <file-location> <destination>
+* rm <file-name>
+	* rm -r <folder-location>
+* cp -r <folder-location> <destination>
+	* cp /sc/arion/projects/BMI1005/liglib/*.mol2 .
+		* . refers to here, not the home directory
+		* if you want to copy it to home, replace . with ~
+		* .. refers to the directory just above the current directory
+		* Wildtype character - * matches everything with .mol2 
+* cat <file-name> - prints all contents of file to screen
+* head <file-name> -n 10 - prints first 10 lines of file to screen
+* tail <file-name> -n 10 - prints last 10 lines of file to screen
+* less <file-name> - interactively go through file
+* more <file-name> - interactively go through file
+* clear - clears screen
+
+# User
+	
+* w <username> - shows currently logged in users, and what are they doing
+	* w babupk01
+* finger <username> - can look up user specific information
+	* finger -lmsp babupk01
+		* -l - multi-line format
+		* -m - prevents matching of user name to other names, just uses the login name
+		* -s - display's user's login name, real name, terminal name, write status, idle time, login time, office location and office phone number
+		* -p - doesn't display plan information
+* id - gives you your information regarding the user, group and others
+* df <file-directory-destination> gives file system disk usage stats
+	* file system, %disk used etc
+* df -h /sc/arion/
+* du <path-directory> <optional - can give name of directory> -hs, -h human readable, -s is summarizing
+	* estimate disk usage for specific groups of files or directories
+	* basically gives disk usage for each file and directory in path
+* sort - sort lines of text files
+	* -g - general numeric sort
+	* -r - sort by reverse order
+	* -n - compare according to string numeric value
+	* -u - unique
+	* -k - sort via a key
+		* Unix indexing starts from 1, blank is a separator, unlike cut
+* uniq - report or omit repeated lines
+	* -c - count - prefix lines by number of occurrences 
+	* -d - only print duplicated lines - one for each group
+	* -u - only print unique lines
+* who am i
+	* am i == -m command switch
+	* who | sort -k 2 --sort=Random | tail -n 10
+* date - prints system date and time
+	* +%s - seconds since
+* echo <string>
+	* prints string
+	* echo -e ${PATH//:/\\n} - prints PATH line by line 
+		* -n - do not output the trailing newline
+	* echo $! - gives process ID of last submitted process
+	* echo !$ - gives the last used argument
+* kill <PID> - Kills a given process
+	* kill $! - kills the latest process or the last PID
+	* -9 - if kill does not work add this command switch
+
+## BasH files
+	
+.bash_history -> keeps a list of the previous commands
+.gitconfig -> repository/coastal-personal-home/.gitcconfig
+.bashrc ->	
+.bash_profile ->	
+	
 ## Bash Shell Keyboard Shortcuts (http://www.keyxl.com/aaaf192/83/Linux-Bash-Shell-keyboard-shortcuts.htm)
 
 Ctrl + U	Clears the line before the cursor position. If you are at the end of the line, clears the entire line.
@@ -106,23 +112,21 @@ Spacebar - Bigger movement through the manpage compared against Enter
 
 # Variables
  
-$USER, $PWD, 
-
-		○ Variable names are in CAPS
-		○ Variables are set as follows VARIABLE_IN_CAPS="This is the assigned value"
-			§ No space should be given before and after the equal sign
-			§ Variable type matters
-		○ Variables can be printed as follows echo $VARIABLE_IN_CAPS
-		○ Quotes may be needed to call variables
-		○ $PATH - variable with locations where shell commands exist
-		○ $LD_LIBRARY_PATH - path to library - pieces of code with lots of standard functions
-	• which <shell_command> locates the executable file associated with the given command by searching
-it in the $PATH environment variable
-		○ which ls
-	• ldd - prints shared objects(libraries) required by each program or shared object specified
-		○ ldd /bin/env
-![image](https://user-images.githubusercontent.com/29302013/156432675-7bc9f1b7-61b6-4fea-ad5b-3cf0d6308ea2.png)
-
+* $USER 
+* $PWD 
+* $LD_LIBRARY_PATH - path to library - pieces of code with lots of standard functions 
+* $PATH - variable with locations where shell commands exist 
+	
+* Variable names are in CAPS
+* Variables are set as follows VARIABLE_IN_CAPS="This is the assigned value"
+	* No space should be given before and after the equal sign
+	* Variable type matters
+* Variables can be printed as follows echo $VARIABLE_IN_CAPS
+* Quotes may be needed to call variables
+* which <shell_command> locates the executable file associated with the given command by searching it in the $PATH environment variable
+	* which ls
+* ldd - prints shared objects(libraries) required by each program or shared object specified
+	* ldd /bin/env
 
 ## Understanding ls -l long listing
 
@@ -151,7 +155,6 @@ and others
 if they have read access they can read the contents of the folder
 		○ Changing the permissions to a folder doesn't the alter the permissions to the 
 contents of the folder
-![image](https://user-images.githubusercontent.com/29302013/156432289-946d9400-4955-4c57-a0ec-9708c39810f6.png)
 
 # Access Control Lists
 
