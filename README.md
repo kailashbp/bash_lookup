@@ -224,6 +224,6 @@ set !paste - unsets paste
 /sc/arion/projects/BMI1005 - Project directory
 /sc/arion/scratch/mezeim01/BMI1005 - Backup
 
-/sc/arion/ & /hpc/users/ are called mount points![image](https://user-images.githubusercontent.com/29302013/156431303-06778d89-3c36-45a1-828e-b947e951ddf0.png)
+/sc/arion/ & /hpc/users/ are called mount points
 
 
