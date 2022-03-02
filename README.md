@@ -244,6 +244,360 @@ rm cellRanger_segment.mtx*
 * Can encapsulate a set of commands and give it to a script to run
 	* echo $PATH | cut -d: -f2
 
+Tee
+
+
+
+
+Command I/O - UNIX has special names for the output and input of commands
+		○ Standard In - STDIN - 0
+		○ Standard Out - STDOUT - 1
+		○ Standard Error - STDERR - 2
+		○ Pipe redirects the STDOUT to STDIN of another command
+			§ env | grep USER
+				§ env contains many variables, we are extracting the USER variable using grep
+				§ outputs each line that matches the input parameter to STDOUT
+				§ If the line contains an invalid character, output goes to STDERR
+
+grep <expression_to_match>
+	• -v - invert match, selects the line that don't match
+
+Redirects - pipe that sends output to a file (file descriptors - file descriptor number or file name)
+rather than a command
+	• All three input, output types can be redirected
+		○ STDOUT redirect is >, which is equivalent to 1>
+		○ STDIN redirect is <
+		○ STDERR redirect is 2>
+	• Redirects can be combined with the & sign
+		○ >2&1> send STDERR to where STDOUT is going
+
+Programs have file descriptors too [source_descriptor_file] redirect_option [destination_descriptor_file]
+	• < opens file descriptor to read
+	• > opens file descriptor to write
+	• >> opens file descriptor to append
+
+Stream editor - Changing text 'on the fly'
+	• grep aaaaaaaa database.dat  | sed 's/aaa/xxx' > database_modified.txt
+	• diff database.dat database_modified.txt
+	• grep aaaaaa database.dat | sed 's/a/x/g' > database_modified_2.txt
+	• diff database.dat database_modified_2.dat
+	• cat database.dat | sed '/aaaa/d' > database_modified_3.txt
+	• diff database.dat database_modified_3.dat
+
+Packing files (tar) - originally meant tape archive
+	•   tar -cf archive.tar foo bar  # Create archive.tar from files foo and bar.
+	•   tar -tvf archive.tar         # List all files in archive.tar verbosely.
+	•   tar -xf archive.tar          # Extract all files from archive.tar.
+
+Compressing files (gz - stands for gnu-zip)
+	• gzip database.dat
+	• ls database* (* is wildcard - used to find database.dat.gz)
+	• gzip -d database.dat.gz - to uncompress the compressed file
+	
+	• cal 7 1997 - shows the calendar of July 1997
+
+sh - shell - is a command line interpreter that executes command read from a command line string, the standard input or a specified file.
+
+Subshells
+	• They are like a function, the variables defined within these parentheses are local variables
+i.e., the "scope" of the variable is limited, a global variable on the other hand can be accessed both 
+within the subshell as well as outside the subshell.
+	• #!/bin/bash
+XD=1
+(YD=2 echo $XD $YD)
+echo $XD $YD
+	• So, the output for the above script will be
+1 2
+1
+	• There are several ways to create subshells
+		○ Using parentheses () - Output is sent to STDOUT
+		○ Using backtick characters `` - the command inside is replaced with output from Shell
+		○ Using $() - command is changed into an unnamed variable
+		○ Using <() - command in changed into a virtual file, and returns the file name
+
+Process substitution
+	• A subshell's output can be captured and used as an input using the pipe operator
+	• This process of capturing the output is called process substitution because we are using a "process"
+as a "substitute" for a variable or file.
+
+Commands and outputs
+	• (echo $USER) : babupk01
+	• echo $USER : babupk01
+	• echo $(USER) : will throw an error
+	• echo `which env` : /usr/bin/env
+	• echo (which env) - will throw an error
+	• echo $(which env) - /usr/bin/env
+	• echo < which env - will throw an error
+	• echo < (which env) - will throw an error
+	• echo <(which env) : /dev/fd/63
+	• echo < $(which env) - will print an empty line
+	• grep USER <(env) : USER=babupk01
+	• grep USER <(env) : USER=babupk01
+	• grep USER < (env) - throws an error
+	• env | grep USER : USER=babupk01
+	• echo $(date) : shows today's date, which is the same output as the command date
+	• echo "date": prints date
+	• echo "date" | sh : send output of echo "date" to shell script
+	• echo "date" > datescript : Writes date to a file called datescript
+		○ sh datescript : prints the date
+		○ cat datescript | sh : prints the date
+
+Why ldd `which env` and why not which env | ldd ?
+Pipe sends the output of which env to the input of ldd, but ldd needs a parameter not an input.
+
+Why env | grep USER and why not grep USER `env` ?
+grep USER `env` translates to grep USER env_command_output which doesn't make syntactic sense.
+Pipe'ing' output of env STDOUT as input to grep USER seems to work. 
+
+Quotes
+" " - evaluates variables in between them and then returns the output
+' ' - echos whatever is within the quotes
+`` - Executes the command
+
+
+
+Shell scripting
+	• Every scripting file begins with this
+		○ When a script file is executed, the file is being called as an application, as if it was a binary file
+		○ The shell checks the type of application, and how to run it - "file magic"
+		○ The shebang line is the first line a script that makes it self executable
+			§ #/usr/bin/env python - is used to specify to shell that it is a python application
+			§ #!/bin/bash or #!/bin/csh -is used to specify to shell that it is a binary application
+	• A file that contains a set of shell commands
+	• Equivalent of a source file that is used in R
+		○ So consider it like a function, which we use to reduce code repetition
+	• Comments can be used in shell scripts using the # symbol
+
+Execution
+	• Each shell script executes a new shell program i.e., a "child process"
+		○ All processes start from the current process, then "fork" into "child processes", e.g. scripts
+		○ Every process gets a process ID, or PID, which is accessed using the $$ sign
+		○ Child shell inherits exported variables
+		○ 
+		○ Variables inside child shell do not change parent shell variables
+		○ 
+	• So, it has its own set of variables, which doesn't contain the variables in the "parent process"
+	• To use a variable from the parent process in the child process, we use the command export
+
+
+
+Multi-user environment
+	• Each person's shell can be configured differently, with different environments pointing to different PATHs
+	• This is different from a normal GUI. Each app is installed in its own big disk space on folder, not in a common folder.
+	• In case one wants to use a different PATH or LD_LIBRARY_PATH
+		○ export PATH=''$PATH
+		○ export LD_LIBRARY_PATH='' 
+	• But how do you keep track of which program requires which package?
+		○ Minerva uses what is called "Environment modules" to deal with this
+		○ Module files define the path to specific apps, and all of their dependencies
+		○ Module files also change the environment based on the need of the particular program being run
+	• module avail - lists all the module in the system to STDERR
+	• module list - lists all the modules currently loaded
+	• module load X - loads a particular module X
+	• module unload X - unloads a particular module X
+	• module purge - unloads all modules
+
+sleep 5 - delays the process for five seconds
+ps - returns a current snapshot of the processes
+
+
+
+
+ 
+
+Scripts vs compiled language
+	• Script contain instructions for another program to interpret, and execute some function built into that program
+		○ Quick to write/debug
+		○ Easily modifiable
+		○ Does not scale well
+		○ Limited to simple constructs (loops, conditionals)
+		○ E.g., Shell script (bash, csh, ksh, …), R, Matlab, Python
+
+printenv - print the values of the specified environment variable
+printf - format and print data
+
+Source
+
+
+Executes command as if they were terminal input, so the CV (Child variable) is accessible outside of the shell script.
+
+For loop - semi colon stands for new line
+
+
+SYNTAX: for NAME [in LIST]; do COMMANDS [$NAME]; done
+[in LIST] is optional if not given it is replace by $@ which stands for all shell arguments e.g. $1, $2, $3, …
+$1 is the argument of a shell call.
+
+{START..END}
+
+
+{START..END..INCREMENT}
+
+
+Indentation helps
+
+
+Arithmetic
+
+
+
+
+Not preferred way of updating variables
+
+
+Preferred way of updating variables
+
+
+Counting
+
+
+
+Bitwise operators work on bits, and make bit by bit operations
+Logical operators work on making a decision based on multiple conditions
+
+screen
+	• Starts a command line session that you can detach from and then re-attach to from the same or another computer.
+	• Each session is preferably given a name
+	• Disconnect by using ^A^D
+	• screen -s mysession
+	• screen -s count1
+	• ./count.sh
+	• screen -r mysession
+	• screen -ls
+	• You can always log in to a new window, and start a second job there, instead of using a screen
+
+shuf
+	• Shuffle or permute randomly
+
+
+
+file - determines file type
+
+
+
+To count the number of files
+
+wc - print newline, word, and byte counts for each file
+	• -l - prints the newline counts
+	• -c - prints byte counts
+	• -m - prints character counts
+	• -L - prints length of the longest line
+	• -w - prints word counts
+
+
+
+	
+Backgrounding multiple tasks
+
+Shell variable RANDOM is a random number between 0 and 32767
+
+
+
+
+
+
+What did $1 or the lack of parameters mean?
+
+
+wait command which pauses until execution of a background process has ended.
+
+
+
+Where are the files? The files are being generated by bg.sh and being stored in ~
+What change in the script would make the files show? 
+
+
+
+nohup, start in background
+
+
+
+nohup - no hang up - ignore the hang up signal
+hup is the way terminal warns dependent processes of logout
+
+A program will gets the following command, terminates.
+
+
+This is used to safely log off, but the job will keep running in the background.
+
+If, then conditions, logical testing
+
+Syntax: IF <TEST_COMMANDS>; then <TEST_COMMANDS>;fi
+TEST is a command to evaluate a logical expression
+	• [ ] - synonym for TEST
+	• [[ ]] - new and improved TEST
+
+
+
+Also, in bash, success (TRUE) = 0, failure (FALSE) = 1
+Return status is the exit status of the last command or 0 if the condition tested TRUE
+
+Difference between && and ||, && executes if previous command exited with 0, || executes if previous command exited with 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-eq - equal to
+-ne - not equal to
+-lt - lesser than
+-le - lesser than or equal to
+-gt - greater than
+-ge - greater than or equal to
+
+
+
+
+
+
+
+Issue: If a file is both ASCII and an executable, then it won’t be counted as an executable. 
+
+
+But there is a fix. (if_fx.sh) Check slides, when you are not brain dead, and are capable of processing information. 
+
+While loop
+
+
+
+
+Until loop
+
+
+Go through count_n.sh
+
+dos2unix - to convert a Windows DOS file to a Unix file. Windows uses CR LF to end lines, whereas Unix just uses an LF. CR LF refers to carriage return - moves the cursor without advancing to the next line. Unix uses line feed, which moves the cursor down to the next line without returning to the beginning of the line
+
+bjobs - The LSF scheduler system 
+
+
+awk - an interpreted programming language typically used for data extraction, it is not a part of bash. Intent of creating this language, was to write single line aka in-line programs.
+	• awk [options] -f scriptfile file
+	• 
+	• If match occurs, then the action is taken per line
+	• awk [options] in-line-program file
+		○ awk '/attccagaacatttccatcaccccgaaaagaaaaccctaaatcctttatc/ {print}' database.dat
+	• $0 - Entire record/line
+	• $1, $2, …, $NF are fields
+	• NR is the record/line number working on
+	• 
+wc
+sed -n '/gtgggggaaccttccagaaagaggcaacatcatgtgctaaggtcccaggt/p' database.dat
+
+
+![image](https://user-images.githubusercontent.com/29302013/156441976-ee52e7f7-19a5-49bb-823d-56b596967f1d.png)
 
 
 
