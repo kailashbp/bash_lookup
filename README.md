@@ -2,6 +2,8 @@
 
 Useful bash cheatsheet
 
+Look up explainshell.com to get more information on specific commands, and command switches
+
 # Basics
 
 * drag and drop file into Shell - will give you the directory of the file
