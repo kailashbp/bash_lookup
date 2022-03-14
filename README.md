@@ -119,19 +119,19 @@ If .bashrc not running when starting a new terminal, then make the following cha
 
 ## Bash Shell Keyboard Shortcuts (http://www.keyxl.com/aaaf192/83/Linux-Bash-Shell-keyboard-shortcuts.htm)
 
-Ctrl + U	Clears the line before the cursor position. If you are at the end of the line, clears the entire line.
-Ctrl + R	Let's you search through previously used commands
-Ctrl + C	Kill whatever you are running
-Ctrl + D	Exit the current shell
-Ctrl + Z	Puts whatever you are running into a suspended background process.
-fg - Resumes job that was suspended
-bg - sends process to background
-Ctrl + W	Delete the word before the cursor
-Ctrl + K	Clear the line after the cursor
-Tab	Auto-complete files and folder names
-Ctrl + Y : Restores the lately removed with Ctrl + W or Ctrl + U or Ctrl + K text
-q Quits man page
-Spacebar - Bigger movement through the manpage compared against Enter
+* Ctrl + U	Clears the line before the cursor position. If you are at the end of the line, clears the entire line.
+* Ctrl + R	Let's you search through previously used commands
+* Ctrl + C	Kill whatever you are running
+* Ctrl + D	Exit the current shell
+* Ctrl + Z	Puts whatever you are running into a suspended background process.
+* fg - Resumes job that was suspended
+* bg - sends process to background
+* Ctrl + W	Delete the word before the cursor
+* Ctrl + K	Clear the line after the cursor
+* Tab	Auto-complete files and folder names
+* Ctrl + Y : Restores the lately removed with Ctrl + W or Ctrl + U or Ctrl + K text
+* q Quits man page
+* Spacebar - Bigger movement through the manpage compared against Enter
 
 # Variables
  
