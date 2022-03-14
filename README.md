@@ -109,7 +109,10 @@ Look up explainshell.com to get more information on specific commands, and comma
 	
 .bash_history -> keeps a list of the previous commands
 .gitconfig -> repository/coastal-personal-home/.gitcconfig
-.bashrc ->	
+.bashrc -> ~/.bashrc
+
+* https://unix.stackexchange.com/questions/129143/what-is-the-purpose-of-bashrc-and-how-does-it-work
+	
 .bash_profile ->	
 
 If .bashrc not running when starting a new terminal, then make the following changes to your .bash_profilehttps://askubuntu.com/questions/161249/bashrc-not-executed-when-opening-new-terminal
