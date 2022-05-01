@@ -525,6 +525,10 @@ awk - an interpreted programming language typically used for data extraction, it
 wc
 sed -n '/gtgggggaaccttccagaaagaggcaacatcatgtgctaaggtcccaggt/p' database.dat
 
+ Using the ‘cron’ command, users can schedule scripts to run when it’s convenient for them. 
 
+One simple trick is to use the ‘echo’ command to ensure that you’re specifying the files you intend. “‘Echo before execute’ is a very good rule of thumb,” says Greene. Some commands provide a ‘dry-run’ mode, which reports what they intend to do, and/or an ‘interactive’ mode, which prompts the user before making changes. Users can also set variables to prevent the computer from overwriting files, or to exit when there is an error (‘noclobber’ and ‘pipefail’, respectively). And they should avoid running commands while they have administrative privileges.
+	
+Install mlr
 
 	
