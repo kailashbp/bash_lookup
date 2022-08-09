@@ -48,6 +48,7 @@ Look up explainshell.com to get more information on specific commands, and comma
 * less <file-name> - interactively go through file
 * more <file-name> - interactively go through file
 * clear - clears screen
+* groups - finds all the groups you are part of
 
 # User related
 	
